@@ -50,9 +50,13 @@ As long as you remain signed in on your device, you will automatically stay sign
 
 If you need to sign in again, just tap the Sign in with Apple button again and complete a simple Face ID, Touch ID, or passcode confirmation. It works the same way on your other Apple devices that you're signed into with the same Apple ID.
 
-# Use Sign in with Apple on other platforms
 
 ![image](/Media/2.png)
+
+# Use Sign in with Apple on other platforms
+
+
+![image](/Media/3.png)
 
 Many apps are available across Apple devices, the web, and other platforms like Android or Windows. Developers can add Sign in with Apple anywhere they offer their app or service, so you can sign in quickly and easily.
 
@@ -70,13 +74,15 @@ Sign In with Apple works on iOS, macOS, tvOS, and watchOS. You can also add Sign
  
 1. Configure Project
 
-![image](/Media/3.png)
+![image](/Media/4.png)
+
 
 - Add the Sign In with Apple capability in your project. This will add an entitlement that lets your app use Sign In with Apple.
 
-![image](/Media/4.png)
+![image](/Media/5.png)
 
-2. Add Apple LogIn Button
+
+2. Add Apple Login Button
 
 AuthenticationServices framework provides ASAuthorizationAppleIDButton to enables users to initiate the Sign In with Apple flow. Adding this button is very simple you just need to create an instance of ASAuthorizationAppleIDButton and add a target for touchUpInside action. After that you can add this button in your view.
 
@@ -92,6 +98,74 @@ There are huge possibility of user meight already logged in with your applicatio
 - ASAuthorizationPasswordProvider is a mechanism for generating requests to authenticate users based on their Apple ID
 - ASAuthorizationPasswordProvider is a mechanism for generating requests to perform keychain credential sharing.
 
-![image](/Media/5.png)
+5. Handle ASAuthorizationController Delegate and Presentation Context
+
+On success, the ASAuthorizationController delegate receives an authorization (ASAuthorization) containing a credential (ASAuthorizationAppleIDCredential) that has an opaque user identifier.
+ 
+5.1 ASAuthorizationController Delegate
+     
+authorizationController(controller: didCompleteWithError:) tells the delegate that authorization failed, and provides an error to explain why.
+
+authorizationController(controller: didCompleteWithAuthorization:) tells the delegate that authorization completed successfully.
+
+5.2 ASAuthorizationController Presentation Context Providing
+
+presentationAnchor(controller:) Tells the delegate from which window it should present content to the user. Required.
+
+6. Configuring your Apple Developer Account
+
+When you try to sign in, you'll see an AUTH_ALERT_SIGN_UP_NOT_COMPLETED error message. Signing in won't work in your application until you create a key with Sign in with Apple enabled in your developer account.
+
+To enable Sign In with Apple in your developer account you need to create an Auth Key with Sign In with Apple.
+
 ![image](/Media/6.png)
+
+If you don’t see the Sign in with Apple listed when you create a key the you're probably in an Enterprise team. Just creating the key should sufficient for now, you will only need to download it when you want to support Sign in with Apple from somewhere other than your application.
+
+If you're creating a key for grouped app then create a key for your primary App ID in order to implement Sign In with Apple. This key will also be used for any App IDs grouped with the primary. The user will see your primary app's icon at sign in and in their Apple ID account settings.
+
+
+**Here the complete flow of LogIn with Apple.**
+
+7. Reset an Existing Account
+
+If you need to reset an existing account to test the first Sign In experience again then open the Settings app on your iOS device, tap your account in the Apple ID header, proceed to Password & security. Find your application under Applications using your Apple ID and swipe to delete it.
+
+8. Check Credential State
+
+We can use that userIdentifier which we got from ASAuthorizationAppleIDCredential object in last step to check the user credential state. We can get credential state for an userIdentifier by calling the getCredentialState(forUserID: completion:) method
+
+9. Register Domains and Emails for communication
+
+In order to contact users that use Apple's private email relay service, you need to register domains and email addresses that your organization will use for communication. To config this, open your Apple Developer Account. Now, click on More side menu on the Certificates, Identifiers & Profiles page. If you More menu item not available then you're probably in an Enterprise Team. Here the direct link to configuration page - https://developer.apple.com/account/resources/services/configure.
+
 ![image](/Media/7.png)
+
+
+#By Apple
+
+- vXcode 11.1
+- iOS 13.1
+- macOS 10.15.1
+
+#Documentation
+
+- https://developerinsider.co/ios-13-how-to-integrate-sign-in-with-apple-in-your-application/
+- https://developer.apple.com/design/human-interface-guidelines/ios/overview/mac-catalyst/
+- https://support.apple.com/en-us/HT210318
+
+
+# LICENSE!
+
+Mac-Catalyst-With-Apple-Sign-In is [MIT-licensed](/LICENSE).
+
+#References
+
+- Human Interface Guidelines for Sign in with Apple
+- AuthenticationService Docs
+
+# Conclusion
+
+While there’s still a ton of information left to be discovered about Mac Catalyst / sign in with Apple. I hope this article has cleared up some of the major question marks. I’ll keep digging, and will report all of my new findings as soon as possible.
+
+
