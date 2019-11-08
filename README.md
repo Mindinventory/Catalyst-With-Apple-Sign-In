@@ -1,6 +1,6 @@
 
 
-# Mac-Catalyst-With-Apple-Sign-In
+# Catalyst-With-Apple-Sign-In
 This "Mac Catalyst With Apple Sign In" Demo is very simple &amp; easy to understand about How to developer Catalyst app and sign with Apple. This demo includes Login screen, sign with apple and home screen.
 
 ![image](/Media/0.png)
@@ -157,7 +157,7 @@ In order to contact users that use Apple's private email relay service, you need
 
 # LICENSE!
 
-Mac-Catalyst-With-Apple-Sign-In is [MIT-licensed](/LICENSE).
+Catalyst-With-Apple-Sign-In is [MIT-licensed](/LICENSE).
 
 #References
 
