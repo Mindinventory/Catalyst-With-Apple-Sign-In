@@ -3,7 +3,7 @@
 # Catalyst-With-Apple-Sign-In
 This "Mac Catalyst With Apple Sign In" Demo is very simple &amp; easy to understand about How to developer Catalyst app and sign with Apple. This demo includes Login screen, sign with apple and home screen.
 
-![image](/Media/0.png)
+![image](/Media/Home.png)
 
 **Create a version of your iPad app that users can run on a Mac device.**
 
