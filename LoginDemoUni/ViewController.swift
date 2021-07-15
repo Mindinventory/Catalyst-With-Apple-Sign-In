@@ -122,7 +122,7 @@ extension ViewController {
     }
 }
 
-// MARK: - Deleget Methods
+// MARK: - Delegate Methods
 extension ViewController: ASAuthorizationControllerDelegate,ASAuthorizationControllerPresentationContextProviding {
     // ASAuthorizationController Presentation Context Providing
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
